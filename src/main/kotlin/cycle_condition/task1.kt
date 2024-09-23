@@ -4,6 +4,7 @@
 
 fun main() {
     // val inputString = "AAADSSSRRTTHAAAA"
+    // val inputString = "AAADSSSRRTTHA"
     println("Введите строку")
     val inputString = readLine().toString().uppercase()
     var result = ""
@@ -23,7 +24,11 @@ fun main() {
             count = 1
         }
     }
-    result += "$currentChar$count"
+    result += if (count == 1) {
+        "$currentChar"
+    } else {
+        "$currentChar$count"
+    }
     println(result)
 }
 
