@@ -1,7 +1,5 @@
 package array_task
 
-import kotlin.math.min
-
 //Задача 4.
 //
 //Создать приложение, в котором пользователь дает на вход два числовых массива, числа в массиве могут повторяться.
@@ -11,39 +9,36 @@ import kotlin.math.min
 
 fun main() {
 
-    val array1 = arrayOf(1, 2, 3, 2, 0)
-    val array2 = arrayOf(5, 1, 2, 7, 3, 2, 2)
-
-    val set1 = hashSetOf<Int>(*array1)
-    val set2 = hashSetOf<Int>(*array2)
-
-    val set3 = hashSetOf<Int>()
-    val list1 = mutableListOf<Int>()
-
-    for (i in array1) {
-        if(set3.contains(i)) {
-            list1.add(i)
-        } else {
-            set3.add(i)
+    val resultList = mutableListOf<Int>()
+    var list1: List<Int>? = null
+    var list2: List<Int>? = null
+    var isCheck = true
+    while (isCheck) {
+        try {
+            println("Введите значения первого массива через пробел")
+            list1 = readln().split(' ').map { it.toInt() }.toList()
+            println("Введите значения второго массива через пробел")
+            list2 = readln().split(' ').map { it.toInt() }.toList()
+            isCheck = false
+        } catch (e: Exception) {
+            println("Введены некорректные значения")
         }
     }
 
-    println(list1)
+    val countMap = mutableMapOf<Int, Int>()
+    for (element in list1!!) {
+        if (list2!!.contains(element)) {
+            val currentCount = countMap[element] ?: 0
+            countMap[element] = currentCount + 1
+        }
+    }
 
-    val intersect = set1.intersect(set2)
-    val union = set1.union(set2)
-    val diff = set1.subtract(set2)
+    for (i in countMap.keys) {
+        for (j in 1..countMap[i]!!) {
+            resultList.add(i)
+        }
+    }
 
-    val mut1: MutableList<Int> = mutableListOf(*array1)
-    val mut2: MutableList<Int> = mutableListOf(*array2)
-
-    println(mut1.removeAll(mut2))
-    println(mut1)
-
-    println(intersect)
-    println(union)
-    println(diff)
-
-
-
+    println("Итоговый массив:")
+    resultList.forEach { print("$it") }
 }

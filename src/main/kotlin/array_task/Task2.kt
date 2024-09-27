@@ -34,9 +34,9 @@ fun main() {
     for (i in 0 until rows) {
         for (j in 1 until cols) {
             if (matrix[i][j] == matrix[j][i])
-            continue
+                continue
             else {
-               println("Матрица не симметричная")
+                println("Матрица не симметричная")
                 break
             }
         }

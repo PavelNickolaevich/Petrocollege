@@ -1,7 +1,5 @@
 package array_task
 
-import java.util.*
-
 //Задача 5.
 //
 //Создать приложение, в котором пользователь вводит массив из различных слов.
@@ -14,12 +12,12 @@ import java.util.*
 
 fun main() {
 
-//    val wordArr = arrayOf("eat", "tea", "tan", "ate", "nat", "bat")
+//    val words = arrayOf("eat", "tea", "tan", "ate", "nat", "bat")
 
     val words = mutableListOf<String>()
 
     while (true) {
-        print("Введите слово или пустое значение для выполнение программы:")  // Ввод слова с клавиатуры
+        print("Введите слово или пустое значение для выполнение программы:")
         val word = readLine().toString()
         if (word.isEmpty()) break
         words.add(word)
@@ -27,8 +25,8 @@ fun main() {
 
     val groupedWords = words.groupBy { it.toCharArray().sorted().joinToString("") }
 
-    groupedWords.forEach{entry ->
-        println(entry.value.joinToString(", "))
+    groupedWords.forEach { it ->
+        println(it.value.joinToString(", "))
     }
 
 }
