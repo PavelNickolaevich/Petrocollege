@@ -4,7 +4,7 @@ import kotlin.random.Random
 
 class Computer {
     private val variant = arrayOf("камень", "ножницы", "бумага")
-    private  val rand = Random.nextInt(variant.size)
+    private val rand = Random.nextInt(variant.size)
     val compVal = variant[rand]
 }
 
@@ -16,7 +16,7 @@ fun main() {
     val notif = "Введите корректное значение";
     println("Добро пожаловать в игру Камень-Ножницы-Бумага")
 
-    while(true) {
+    while (true) {
         println("Начать игру - 1 \nВыйти из игры  - 2")
         try {
             val inNum = readLine()!!.toInt();
@@ -27,11 +27,12 @@ fun main() {
                     while (true) {
                         val compVar = Computer().compVal
                         val player = Player().manVar
-                        if(!playGame(compVar, player)) {
+                        if (!playGame(compVar, player)) {
                             break
                         }
                     }
                 }
+
                 2 -> break
                 else -> println("Введены некорреткные данные")
             }
@@ -39,31 +40,47 @@ fun main() {
             println("Введены некорреткные данные")
         }
     }
-
 }
 
 fun playGame(computer: String, player: String): Boolean {
-    var isWrongValue: Boolean  = false
-    when(player) {
-        "камень" -> when(computer) {
-            "бумага" -> println ("Вы проиграли, компьютер загадал: $computer\n")
-            "ножницы" -> println ("Вы победили, компьютер загадал: $computer\n")
-             else -> println ("Ничья, компьютер загадал: $computer\n")
+    var isWrongValue = false
+    when (player) {
+        "камень" -> when (computer) {
+            "бумага" -> getLosingMessage(computer)
+            "ножницы" -> getWinningMessage(computer)
+            else -> getDeadHeatMessage(computer)
         }
-        "бумага" -> when(computer) {
-            "ножницы" -> println ("Вы проиграли, компьютер загадал: $computer\n")
-            "камень" -> println ("Вы победили, компьютер загадал: $computer\n")
-            else -> println ("Ничья, компьютер загадал: $computer\n")
+
+        "бумага" -> when (computer) {
+            "ножницы" -> getLosingMessage(computer)
+            "камень" -> getWinningMessage(computer)
+            else -> getDeadHeatMessage(computer)
         }
-        "ножницы" -> when(computer) {
-            "бумага" -> println ("Вы победили, компьютер загадал: $computer\n")
-            "камень" -> println ("Вы проиграли, компьютер загадал: $computer\n")
-            else -> println ("Ничья, компьютер загадал: $computer\n")
+
+        "ножницы" -> when (computer) {
+            "бумага" -> getWinningMessage(computer)
+            "камень" -> getLosingMessage(computer)
+            else -> getDeadHeatMessage(computer)
         }
+
         else -> {
             println("Введите корректное значение")
-             isWrongValue = true;
+            isWrongValue = true;
         }
     }
     return isWrongValue
 }
+
+private fun getLosingMessage(computer: String) {
+    println("Вы проиграли, компьютер загадал: $computer\n")
+}
+
+private fun getWinningMessage(computer: String) {
+    println("Вы победили, компьютер загадал: $computer\n")
+}
+
+private fun getDeadHeatMessage(computer: String) {
+    println("Ничья, компьютер загадал: $computer\n")
+}
+
+
