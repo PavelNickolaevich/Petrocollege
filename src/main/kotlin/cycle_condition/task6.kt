@@ -16,11 +16,11 @@ fun main() {
                 else -> {
                     num1 = varChoice.toInt()
                     num2
-                    if (num2!! % 2 != 0 && num1!! % 2 != 0) {
+                    if (num2 % 2 != 0 && num1!! % 2 != 0) {
                         println("Оба числа нечетные")
-                    } else if (num2!! % 2 != 0) {
+                    } else if (num2 % 2 != 0) {
                         println("Нечетное число $num2")
-                    } else if (num1!! % 2 != 0) {
+                    } else if (num1 % 2 != 0) {
                         println("Нечетное число $num1")
                     } else {
                         println("Создать нечетное число невозможно")

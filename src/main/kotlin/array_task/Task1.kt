@@ -17,7 +17,7 @@ fun main() {
     print("Введите количество столбцов для массива: ")
     val cols = readLine()!!.toInt()
     var count = 0
-    var digitArray = intArrayOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+    val digitArray = intArrayOf(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
     var matrix = Array(rows) { IntArray(cols) }
     lateinit var char: CharArray
 
